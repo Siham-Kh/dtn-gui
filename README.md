@@ -17,3 +17,5 @@ $ go get github.com/gotk3/gotk3/gtk
 $ sudo apt-get install libgtk-3-dev
 $ sudo apt-get install libcairo2-dev
 $ sudo apt-get install libglib2.0-dev
+
+$ sudo apt install glade -y
