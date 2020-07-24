@@ -1,10 +1,10 @@
-.button{
+button{
   background: #669999;
     text-shadow: 1px 1px 5px black;
     border-radius: 3px;
     box-shadow: 0px 0px 5px black;
 }
-.button:hover{
+button:hover{
   background: #889898;
     text-shadow: 1px 1px 5px black;
     border-radius: 3px;

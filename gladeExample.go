@@ -49,6 +49,42 @@ func main() {
 	}
 	builder.ConnectSignals(signals)
 
+	getWindow("window")
+
+	getFixed()
+
+	
+	button := getButton("button")
+	cssProv, err := gtk.CssProviderNew()
+	cssProv.LoadFromPath("./modified.css")
+	errorCheck(err)
+
+	styleButton(cssProv, button)
+
+	// Show the Window and all of its components.
+	window.SetDefaultSize(600, 400)
+	window.ShowAll()
+	gtk.Main()
+
+}
+
+func styleButton(cssProv *gtk.CssProvider, g *gtk.Button) {
+
+	context, err := g.GetStyleContext()
+	errorCheck(err)
+	context.AddProvider(cssProv, gtk.STYLE_PROVIDER_PRIORITY_USER)
+
+	// this is for selecting a specific class from a css file
+	// context.AddClass("button")
+
+	/* For all the screen */
+	// screen, err := gdk.ScreenGetDefault()
+	// errorCheck(err)
+	// gtk.AddProviderForScreen(screen, cssProv, gtk.STYLE_PROVIDER_PRIORITY_USER)
+}
+
+
+func getWindow(s string){
 	// Get the object with the id of "window".
 	win, err := builder.GetObject("window")
 	errorCheck(err)
@@ -60,12 +96,11 @@ func main() {
 	window.Connect("destroy", func() {
 		println("got destroy!")
 		gtk.MainQuit()
-	})
+	}
+}
 
-	// Get the object with the id of "fixed".
-	_, err = builder.GetObject("fixed")
-	errorCheck(err)
 
+func getButton("button") *gtk.Button{
 	// Get the object with the id of "fixed".
 	but, err := builder.GetObject("button")
 	errorCheck(err)
@@ -73,17 +108,12 @@ func main() {
 	button, err := isButton(but)
 	errorCheck(err)
 
-	cssProv, err := gtk.CssProviderNew()
-	cssProv.LoadFromPath("./modified.css")
+	return button
+}
+
+
+func getFixed(){
+	// Get the object with the id of "fixed".
+	_, err = builder.GetObject("fixed")
 	errorCheck(err)
-
-	context, err := button.GetStyleContext()
-	context.AddProvider(cssProv, gtk.STYLE_PROVIDER_PRIORITY_USER)
-	context.AddClass("button")
-
-	// Show the Window and all of its components.
-	window.SetDefaultSize(600, 400)
-	window.ShowAll()
-	gtk.Main()
-
 }
