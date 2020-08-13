@@ -19,3 +19,7 @@ $ sudo apt-get install libcairo2-dev
 $ sudo apt-get install libglib2.0-dev
 
 $ sudo apt install glade -y
+
+
+### necessary packages:
+$ sudo apt install smartmontools
